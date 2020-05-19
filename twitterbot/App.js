@@ -5,10 +5,8 @@ import { ThemeProvider } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Stats from './Components/Stats/Stats';
-import Bot from './Components/Bot';
+import Bot from './Components/Bot/Bot';
 import Settings from './Components/Settings/Settings';
-import UserSingle from './Components/Stats/_partials/UserSingle';
-
 
 const Tab = createBottomTabNavigator();
 
