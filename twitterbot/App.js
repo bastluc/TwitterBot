@@ -6,8 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Stats from './Components/Stats/Stats';
 import Bot from './Components/Bot';
-import Settings from './Components/Settings';
-import UserSingle from './Components/Stats/UserSingle';
+import Settings from './Components/Settings/Settings';
+import UserSingle from './Components/Stats/_partials/UserSingle';
 
 
 const Tab = createBottomTabNavigator();

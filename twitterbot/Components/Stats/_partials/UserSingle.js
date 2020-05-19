@@ -10,18 +10,18 @@ export default class UserSingle extends React.Component {
 
     render(){
         const user = this.props.route.params.user;
-        
+        this.props.navigation.setOptions({ title: user.name.first+" "+user.name.last })
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Image
-                    source={{ uri: user.image }}
+                    source={{ uri: user.picture.large }}
                     style={styles.userImage}
                     PlaceholderContent={<ActivityIndicator />}
                     />
                     <View>
-                        <Text h4 style={{fontWeight: "bold"}}>{user.name}</Text>
-                        <Text h5>@{user.username}</Text>
+                        <Text h4 style={{fontWeight: "bold"}}>{user.name.first}</Text>
+                        <Text h5>@{user.login.username}</Text>
                     </View>
                 </View>
             </View>
