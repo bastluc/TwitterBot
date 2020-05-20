@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from 'react-native-vector-icons/Ionicons';
 
 export default class Bot extends React.Component {
 
@@ -12,7 +12,7 @@ export default class Bot extends React.Component {
                 <Button
                     icon={
                         <Ionicons
-                            name={"chatbubbles"}
+                            name={"ios-chatbubbles"}
                             size={15}
                             color={"white"} />
                     }
@@ -22,7 +22,7 @@ export default class Bot extends React.Component {
                     title="Bot envoi auto."
                 />
             </View>
-        )
+        );
     }
 
 }
