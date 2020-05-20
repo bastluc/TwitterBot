@@ -1,7 +1,7 @@
-import React from 'react'
-import {StyleSheet, ScrollView } from 'react-native'
-import { Card, ListItem, Button, Icon} from 'react-native-elements'
-import {getUsers} from '../../../API/Users'
+import React from "react";
+import { ScrollView } from "react-native";
+import { ListItem } from "react-native-elements";
+import { searchUser } from "../../../API/Twitter/Users";
 
 export default class UsersList extends React.Component {
 
@@ -14,9 +14,10 @@ export default class UsersList extends React.Component {
     }
 
     componentDidMount(){
-        getUsers(25).then(data => {
-            this.setState({users: data.results})
-        })
+        searchUser("bast_lucas").then(data => {
+            console.warn(data);
+            this.setState({users: data});
+        });
     }
 
     render(){
@@ -26,24 +27,18 @@ export default class UsersList extends React.Component {
                     this.state.users.map((u, index) => (
                         <ListItem
                             key={index}
-                            leftAvatar={{ source: { uri: u.picture.thumbnail } }}
-                            title={u.name.first+" "+u.name.last}
-                            subtitle={"@"+u.login.username}
+                            leftAvatar={{ source: { uri: u.profile_image_url_https } }}
+                            title={u.name}
+                            subtitle={"@"+u.screen_name}
                             bottomDivider
-                            subtitleStyle={{ color: 'tomato' }}
-                            chevron={{ color: 'tomato' }}
+                            subtitleStyle={{ color: "tomato" }}
+                            chevron={{ color: "tomato" }}
                             onPress={() => {this.props.navigation.navigate("UserSingle", {user: u})}}
                         />
                     ))
                 }
             </ScrollView>
-        )
+        );
     }
 
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    }
-})

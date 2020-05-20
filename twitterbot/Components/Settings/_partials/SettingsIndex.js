@@ -1,6 +1,6 @@
-import React from 'react'
-import { View } from 'react-native'
-import { ListItem } from 'react-native-elements'
+import React from "react";
+import { View } from "react-native";
+import { ListItem } from "react-native-elements";
 import { Ionicons } from "react-native-vector-icons";
 
 export default class SettingsIndex extends React.Component {
