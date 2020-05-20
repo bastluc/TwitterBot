@@ -15,7 +15,6 @@ export default class UsersList extends React.Component {
 
     componentDidMount(){
         searchUser("bast_lucas").then(data => {
-            console.warn(data);
             this.setState({users: data});
         });
     }

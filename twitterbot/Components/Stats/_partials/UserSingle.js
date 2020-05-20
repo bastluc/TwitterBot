@@ -1,12 +1,19 @@
 import React from 'react';
-import {StyleSheet, View, ActivityIndicator, Dimensions } from 'react-native';
-import { Image, Text } from 'react-native-elements';
+import {StyleSheet, View, ActivityIndicator, Dimensions } from "react-native";
+import { Image, Text } from "react-native-elements";
+import { getTweetsFromUser } from "../../../API/Twitter/Users";
 
 export default class UserSingle extends React.Component {
 
     constructor(props){
         super(props);
     }
+
+    state = {
+        tweets : []
+    }
+
+
 
     render(){
         const user = this.props.route.params.user;
