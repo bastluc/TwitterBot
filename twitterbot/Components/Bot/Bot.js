@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'react-native-elements';
-import { Ionicons } from 'react-native-vector-icons';
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
+import { Button } from "react-native-elements";
+import { Ionicons } from "react-native-vector-icons";
 
 export default class Bot extends React.Component {
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { ListItem } from 'react-native-elements'
+import { Ionicons } from "react-native-vector-icons";
 
 export default class SettingsIndex extends React.Component {
 
@@ -9,11 +10,11 @@ export default class SettingsIndex extends React.Component {
         this.settingsItems = [
             {
                 name: "Statistiques",
-                icon: "rocket"
+                icon: "ios-analytics"
             },
             {
                 name: "Bot",
-                icon: "rocket"
+                icon: "ios-rocket"
             }
         ];
     }
@@ -27,7 +28,10 @@ export default class SettingsIndex extends React.Component {
                         <ListItem
                             key={i}
                             title={item.name}
-                            leftIcon={{ name: item.icon }}
+                            leftIcon={<Ionicons
+                                name={item.icon}
+                                size={15}
+                                color={"tomato"} />}
                             bottomDivider
                             chevron
                         />
