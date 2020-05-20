@@ -12,7 +12,7 @@ export default class Settings extends React.Component {
             <Stack.Navigator initialRouteName="Settings">
                 <Stack.Screen name="Settings" component={SettingsIndex} options={{ title : "Paramètres"}} />
             </Stack.Navigator>
-        )
+        );
     }
 
 }

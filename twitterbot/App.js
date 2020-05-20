@@ -11,43 +11,43 @@ import Settings from './Components/Settings/Settings';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+    return (
+        <NavigationContainer>
+            <Tab.Navigator
+                screenOptions={({ route }) => ({
+                    tabBarIcon: ({ focused, color, size }) => {
+                        let iconName;
 
-            if (route.name === 'Stats') {
-              iconName = 'ios-analytics';
-            } else if (route.name === 'Settings') {
-              iconName = 'ios-settings';
-            } else if(route.name === "Bot") {
-              iconName = 'ios-rocket';
-            }
+                        if (route.name === 'Stats') {
+                            iconName = 'ios-analytics';
+                        } else if (route.name === 'Settings') {
+                            iconName = 'ios-settings';
+                        } else if (route.name === "Bot") {
+                            iconName = 'ios-rocket';
+                        }
 
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: 'tomato',
-          inactiveTintColor: 'gray',
-        }}
-      >
-        <Tab.Screen name="Stats" component={Stats}/>
-        <Tab.Screen name="Bot" component={Bot}/>
-        <Tab.Screen name="Settings" component={Settings} />
-      </Tab.Navigator>
-    </NavigationContainer>
-);
+                        // You can return any component that you like here!
+                        return <Ionicons name={iconName} size={size} color={color} />;
+                    },
+                })}
+                tabBarOptions={{
+                    activeTintColor: 'tomato',
+                    inactiveTintColor: 'gray',
+                }}
+            >
+                <Tab.Screen name="Stats" component={Stats} />
+                <Tab.Screen name="Bot" component={Bot} />
+                <Tab.Screen name="Settings" component={Settings} />
+            </Tab.Navigator>
+        </NavigationContainer>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
