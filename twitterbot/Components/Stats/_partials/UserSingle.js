@@ -22,7 +22,7 @@ export default class UserSingle extends React.Component {
                     PlaceholderContent={<ActivityIndicator />}
                     />
                     <View>
-                        <Text h4 style={{fontWeight: "bold"}}>{user.name.first}</Text>
+                        <Text h4 style={{fontWeight: "bold"}}>{user.name.first} {user.name.last}</Text>
                         <Text h5>@{user.login.username}</Text>
                     </View>
                 </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -10,15 +10,17 @@ export default class Bot extends React.Component {
             <View>
                 <Text>Bot</Text>
                 <Button
+                    buttonStyle={styles.buttons}
                     icon={
                         <Ionicons
                             name={"chatbubbles"}
                             size={15}
                             color={"white"} />
                     }
-                    title="Bot répondeur auto."
+                    containerSitle="Bot répondeur auto."
                 />
                 <Button
+                    buttonStyle={styles.buttons}
                     title="Bot envoi auto."
                 />
             </View>
@@ -26,3 +28,9 @@ export default class Bot extends React.Component {
     }
 
 }
+
+const styles = StyleSheet.create({
+    buttons: {
+        backgroundColor: "tomato"
+    }
+})
