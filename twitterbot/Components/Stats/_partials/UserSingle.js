@@ -13,7 +13,11 @@ export default class UserSingle extends React.Component {
         tweets : []
     }
 
-
+    componentDidMount(){
+        getTweetsFromUser(this.props.route.params.user.id).then(data => {
+            this.setState({tweets: data});
+        });
+    }
 
     render(){
         const user = this.props.route.params.user;
@@ -30,6 +34,9 @@ export default class UserSingle extends React.Component {
                         <Text h4 style={{fontWeight: "bold"}}>{user.name}</Text>
                         <Text h5>@{user.screen_name}</Text>
                     </View>
+                </View>
+                <View>
+                    <Text>Nombre de tweets : {user.statuses_count}</Text>
                 </View>
             </View>
         )
