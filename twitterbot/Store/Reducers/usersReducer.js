@@ -1,4 +1,4 @@
-const initialState = {users: ["frbertel", "bast_lucas", "Raimy_Gdr"]};
+const initialState = {users: ["bast_lucas", "Raimy_Gdr"]};
 
 function addUser(state = initialState, action) {
     let nextState;
