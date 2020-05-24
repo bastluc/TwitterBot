@@ -21,12 +21,13 @@ export default class UserSingle extends React.Component {
 
     render(){
         const user = this.props.route.params.user;
-        this.props.navigation.setOptions({ title: user.name })
+        const profilImage = user.profile_image_url_https.slice(0, -11)+".jpg";
+        this.props.navigation.setOptions({ title: user.name });
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Image
-                    source={{ uri: user.profile_image_url_https }}
+                    source={{ uri: profilImage }}
                     style={styles.userImage}
                     PlaceholderContent={<ActivityIndicator />}
                     />
