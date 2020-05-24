@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {StyleSheet, View, ActivityIndicator, Dimensions, TouchableOpacity } from "react-native";
+import {StyleSheet, View, ActivityIndicator, Dimensions, TouchableOpacity, Alert } from "react-native";
 import { Image, Text } from "react-native-elements";
 import { Icon } from "react-native-elements";
 import { getTweetsFromUser } from "../../../API/Twitter/Users";
@@ -36,9 +36,23 @@ class UserSingle extends React.Component {
 
     _toggleFavorite(){
         if(this.state.infavorites){
-            const action = {type: "REMOVE_USER", value: this.props.route.params.user.screen_name};
-            this.props.dispatch(action);
-            this.setState({infavorites: false});
+            Alert.alert(
+                "",
+                "Êtes-vous sûr de vouloir supprimer @"+this.props.route.params.user.screen_name+" de vos favoris ?",
+                [
+                    {
+                        text: "Oui",
+                        onPress: () => {
+                            const action = {type: "REMOVE_USER", value: this.props.route.params.user.screen_name};
+                            this.props.dispatch(action);
+                            this.setState({infavorites: false});
+                        }
+                    },
+                    {
+                        text: "Annuler"
+                    }
+                ]
+            );
         }
         else {
             const action = {type: "ADD_USER", value: this.props.route.params.user.screen_name};
