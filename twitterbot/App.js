@@ -22,7 +22,7 @@ export default function App() {
 
                             if (route.name === "Stats") {
                                 iconName = "ios-analytics";
-                            } else if (route.name === "Settings") {
+                            } else if (route.name === "Paramètres") {
                                 iconName = "ios-settings";
                             } else if (route.name === "Bot") {
                                 iconName = "ios-rocket";
@@ -30,16 +30,19 @@ export default function App() {
 
                             // You can return any component that you like here!
                             return <Ionicons name={iconName} size={size} color={color} />;
-                        },
+                        }
                     })}
                     tabBarOptions={{
-                        activeTintColor: 'tomato',
-                        inactiveTintColor: 'gray',
+                        activeTintColor: "tomato",
+                        inactiveTintColor: "#fff",
+                        style: {
+                            backgroundColor: "#3A3E42",//color you want to change
+                        }
                     }}
                 >
                     <Tab.Screen name="Stats" component={Stats} />
                     <Tab.Screen name="Bot" component={Bot} />
-                    <Tab.Screen name="Settings" component={Settings} />
+                    <Tab.Screen name="Paramètres" component={Settings} />
                 </Tab.Navigator>
             </NavigationContainer>
         </Provider>

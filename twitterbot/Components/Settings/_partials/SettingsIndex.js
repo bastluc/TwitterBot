@@ -6,7 +6,7 @@ import { Ionicons } from "react-native-vector-icons";
 export default class SettingsIndex extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.settingsItems = [
             {
                 name: "Statistiques",
@@ -30,7 +30,7 @@ export default class SettingsIndex extends React.Component {
                             title={item.name}
                             leftIcon={<Ionicons
                                 name={item.icon}
-                                size={15}
+                                size={25}
                                 color={"tomato"} />}
                             bottomDivider
                             chevron

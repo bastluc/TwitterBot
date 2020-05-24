@@ -9,8 +9,18 @@ export default class Settings extends React.Component {
 
     render(){
         return(
-            <Stack.Navigator initialRouteName="Settings">
-                <Stack.Screen name="Settings" component={SettingsIndex} options={{ title : "Paramètres"}} />
+            <Stack.Navigator initialRouteName="Paramètres" screenOptions={
+                {
+                    headerStyle: {
+                        backgroundColor: "#3A3E42",
+                    },
+                    headerTitleStyle: {
+                        color: "#fff"
+                    },
+                    headerTintColor: "tomato"
+                }
+            }>
+                <Stack.Screen name="Paramètres" component={SettingsIndex} options={{ title : "Paramètres"}} />
             </Stack.Navigator>
         );
     }
