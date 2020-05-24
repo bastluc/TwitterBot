@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ScrollView } from "react-native";
 import { ListItem } from "react-native-elements";
 import twitter from "react-native-simple-twitter";
-import {connect} from 'react-redux'
+import {connect} from "react-redux";
 
 class UsersList extends React.Component {
 
@@ -14,7 +14,7 @@ class UsersList extends React.Component {
         users: []
     }
 
-    componentDidMount(){
+    _chargeUsers(){
         twitter.setConsumerKey("QZEtRk1FreVFoOcjX7xFTP77I", "hSCb8vF75rfW5wovq4KcF3PXHR0Py5Nr9qmpxzNdWc00kXE0Fe");
         twitter.setAccessToken("1300498070-HiIP7UIJp8gNFBJmqzYkc44T4Ks9aeDRHyjoe49", "tzdfPyj7iX4x9m0VmoqdgYXddPxwy8O4H4vP1eah95ua2");
 
@@ -32,6 +32,17 @@ class UsersList extends React.Component {
         });
     }
 
+    componentDidMount(){
+        this._chargeUsers();
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.users.length != this.props.users.length){
+            this.setState({users: []});
+            this._chargeUsers();
+        }
+    }
+
     render(){
         return(
             <ScrollView>
@@ -45,7 +56,9 @@ class UsersList extends React.Component {
                             bottomDivider
                             subtitleStyle={{ color: "tomato" }}
                             chevron={{ color: "tomato" }}
-                            onPress={() => {this.props.navigation.navigate("UserSingle", {user: u})}}
+                            onPress={() => {
+                                this.props.navigation.navigate("UserSingle", {user: u});
+                            }}
                         />
                     ))
                 }

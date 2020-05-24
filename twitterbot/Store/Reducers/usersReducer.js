@@ -11,6 +11,13 @@ function addUser(state = initialState, action) {
         };    
         return nextState || state;
 
+    case "REMOVE_USER":
+        nextState = {
+            ...state,
+            users: state.users.filter((u) => u !== action.value)
+        };    
+        return nextState || state;
+
     default:
         return state;
     }
