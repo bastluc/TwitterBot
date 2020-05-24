@@ -18,18 +18,19 @@ class UsersList extends React.Component {
         twitter.setConsumerKey("QZEtRk1FreVFoOcjX7xFTP77I", "hSCb8vF75rfW5wovq4KcF3PXHR0Py5Nr9qmpxzNdWc00kXE0Fe");
         twitter.setAccessToken("1300498070-HiIP7UIJp8gNFBJmqzYkc44T4Ks9aeDRHyjoe49", "tzdfPyj7iX4x9m0VmoqdgYXddPxwy8O4H4vP1eah95ua2");
 
-        this.props.users.map((u) => {
-            twitter.api("GET", "users/show.json", { screen_name: u })
-                .then(response => response)
-                .then(data => {
-                    this.setState(
-                        {
-                            users: [...this.state.users, data]
-                        }
-                    );
-                })
-                .catch(error => console.warn("error", error));
-        });
+        if(this.props.users.length > 0){
+
+            twitter.api("GET", "users/lookup.json", { screen_name: this.props.users.join()})
+            .then(response => response)
+            .then(data => {
+                this.setState(
+                    {
+                        users: data
+                    }
+                );
+            })
+            .catch(error => console.warn("error", error));
+        }
     }
 
     componentDidMount(){
