@@ -24,7 +24,7 @@ export default class Stats extends React.Component {
             }>
                 <Stack.Screen name="UsersList" component={UsersList} options={
                     { 
-                        title: "Utilisateurs favoris",
+                        title: "Favoris",
                         headerRight: () => (
                             <TouchableOpacity 
                                 style={{marginRight: 10}}
