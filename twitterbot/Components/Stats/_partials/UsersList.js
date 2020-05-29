@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ScrollView } from "react-native";
-import { ListItem } from "react-native-elements";
+import { ScrollView, View, Text } from "react-native";
+import { ListItem, Icon } from "react-native-elements";
 import twitter from "react-native-simple-twitter";
 import {connect} from "react-redux";
 
@@ -52,7 +52,18 @@ class UsersList extends React.Component {
                         <ListItem
                             key={index}
                             leftAvatar={{ source: { uri: u.profile_image_url_https } }}
-                            title={u.name}
+                            title={
+                                <View style={{flexDirection: "row", alignItems: "center"}}>
+                                    <Text style={{marginRight: 5}}>{u.name}</Text>
+                                    <Icon
+                                        iconStyle={{display: u.verified ? "flex" : "none"}}
+                                        type="octicon"
+                                        name="verified"
+                                        color="#00acee"
+                                        size={13}
+                                    />
+                                </View>
+                            }
                             subtitle={"@"+u.screen_name}
                             bottomDivider
                             subtitleStyle={{ color: "tomato" }}

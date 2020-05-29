@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import {connect} from "react-redux";
 import twitter from "react-native-simple-twitter";
-import { SearchBar, ListItem } from "react-native-elements";
+import { SearchBar, ListItem, Icon } from "react-native-elements";
 import { Ionicons } from "react-native-vector-icons";
 
 class UserSearch extends React.Component {
@@ -60,7 +60,18 @@ class UserSearch extends React.Component {
                             <ListItem
                                 key={index}
                                 leftAvatar={{ source: { uri: u.profile_image_url_https } }}
-                                title={u.name}
+                                title={
+                                    <View style={{flexDirection: "row", alignItems: "center"}}>
+                                        <Text style={{marginRight: 5}}>{u.name}</Text>
+                                        <Icon
+                                            iconStyle={{display: u.verified ? "flex" : "none"}}
+                                            type="octicon"
+                                            name="verified"
+                                            color="#00acee"
+                                            size={13}
+                                        />
+                                    </View>
+                                }
                                 subtitle={"@"+u.screen_name}
                                 bottomDivider
                                 subtitleStyle={{ color: "tomato" }}
