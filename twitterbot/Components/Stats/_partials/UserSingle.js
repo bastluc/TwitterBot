@@ -114,7 +114,7 @@ class UserSingle extends React.Component {
                         </View>
                         <View style={{marginLeft: 17}}>
                             <Text style={{fontSize: 17, fontWeight: "bold", marginBottom: 6}}>Date de création</Text>
-                            <Text>{moment(user.created_at).format("LLLL")}</Text>
+                            <Text>{moment(user.created_at, "ddd MMM DD LTS ZZ YYYY").format("LLLL")}</Text>
                         </View>
                     </View>
                     <View style={styles.statItem}>
