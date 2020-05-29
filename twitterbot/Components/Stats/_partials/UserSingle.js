@@ -105,7 +105,8 @@ class UserSingle extends React.Component {
                 <ScrollView style={{paddingTop: 17, paddingLeft: 12, paddingRight: 12}}>
                     <View style={styles.statItem}>
                         <View style={styles.iconContainer}>
-                            <Icon 
+                            <Icon
+                                size={15} 
                                 type="font-awesome"
                                 name="hourglass"
                                 color="#000"
@@ -118,7 +119,8 @@ class UserSingle extends React.Component {
                     </View>
                     <View style={styles.statItem}>
                         <View style={styles.iconContainer}>
-                            <Icon 
+                            <Icon
+                                size={15} 
                                 type="font-awesome"
                                 name="twitter"
                                 color="#000"
@@ -131,7 +133,8 @@ class UserSingle extends React.Component {
                     </View>
                     <View style={styles.statItem}>
                         <View style={styles.iconContainer}>
-                            <Icon 
+                            <Icon
+                                size={15} 
                                 type="font-awesome"
                                 name="users"
                                 color="#000"
@@ -144,7 +147,8 @@ class UserSingle extends React.Component {
                     </View>
                     <View style={styles.statItem}>
                         <View style={styles.iconContainer}>
-                            <Icon 
+                            <Icon
+                                size={15} 
                                 type="font-awesome-5"
                                 name="handshake"
                                 color="#000"
@@ -201,13 +205,13 @@ const styles = StyleSheet.create({
         borderRadius: 6
     },
     iconContainer: {
-        width: 55,
-        height: 55,
+        width: 40,
+        height: 40,
         alignItems: "center",
         justifyContent: "center",
         padding: 10,
-        borderColor: "#000",
-        borderWidth: 2,
+        borderColor: "tomato",
+        borderWidth: 1.5,
         borderRadius:  30
     }
 });
