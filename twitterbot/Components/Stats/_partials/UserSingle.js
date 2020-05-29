@@ -1,9 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
-import {StyleSheet, View, ActivityIndicator, Dimensions, TouchableOpacity, Alert } from "react-native";
-import { Image, Text } from "react-native-elements";
-import { Icon } from "react-native-elements";
+import {StyleSheet, ScrollView, View, ActivityIndicator, Dimensions, TouchableOpacity, Alert } from "react-native";
+import { Image, Text, Icon  } from "react-native-elements";
 import { getTweetsFromUser } from "../../../API/Twitter/Users";
+import moment from "moment";
+import "moment/locale/fr";
 
 class UserSingle extends React.Component {
 
@@ -63,6 +64,7 @@ class UserSingle extends React.Component {
 
     render(){
         const user = this.props.route.params.user;
+        moment.locale("fr");
         const profilImage = user.profile_image_url_https.slice(0, -11)+".jpg";
         this.props.navigation.setOptions(
             { 
@@ -79,6 +81,7 @@ class UserSingle extends React.Component {
                         <Icon
                             name='star'
                             type='font-awesome'
+                            size={20}
                             color={this._favoriteStyle()}
                             onPress={() => this._toggleFavorite()}
                         />
@@ -99,9 +102,60 @@ class UserSingle extends React.Component {
                         <Text h5>@{user.screen_name}</Text>
                     </View>
                 </View>
-                <View>
-                    <Text>Nombre de tweets : {user.statuses_count}</Text>
-                </View>
+                <ScrollView style={{paddingTop: 17, paddingLeft: 12, paddingRight: 12}}>
+                    <View style={styles.statItem}>
+                        <View style={styles.iconContainer}>
+                            <Icon 
+                                type="font-awesome"
+                                name="hourglass"
+                                color="#000"
+                            />
+                        </View>
+                        <View style={{marginLeft: 17}}>
+                            <Text style={{fontSize: 17, fontWeight: "bold", marginBottom: 6}}>Date de création</Text>
+                            <Text>{moment(user.created_at).format("LLLL")}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.statItem}>
+                        <View style={styles.iconContainer}>
+                            <Icon 
+                                type="font-awesome"
+                                name="twitter"
+                                color="#000"
+                            />
+                        </View>
+                        <View style={{marginLeft: 17}}>
+                            <Text style={{fontSize: 17, fontWeight: "bold", marginBottom: 6}}>Tweets</Text>
+                            <Text>{user.statuses_count}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.statItem}>
+                        <View style={styles.iconContainer}>
+                            <Icon 
+                                type="font-awesome"
+                                name="users"
+                                color="#000"
+                            />
+                        </View>
+                        <View style={{marginLeft: 17}}>
+                            <Text style={{fontSize: 17, fontWeight: "bold", marginBottom: 6}}>Followers</Text>
+                            <Text>{user.followers_count}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.statItem}>
+                        <View style={styles.iconContainer}>
+                            <Icon 
+                                type="font-awesome-5"
+                                name="handshake"
+                                color="#000"
+                            />
+                        </View>
+                        <View style={{marginLeft: 17}}>
+                            <Text style={{fontSize: 17, fontWeight: "bold", marginBottom: 6}}>Abonnements</Text>
+                            <Text>{user.followers_count}</Text>
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
         );
     }
@@ -110,13 +164,13 @@ class UserSingle extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "#ECEFF1"
     },
     header: {
         alignItems: "center",
         justifyContent: "center",
-        padding: 20,
-        backgroundColor: "tomato",
+        paddingTop: 20,
         flexDirection: "row"
     },
     userImage: {
@@ -128,6 +182,33 @@ const styles = StyleSheet.create({
     mapStyle: {
         flex: 0.25,
         width: Dimensions.get("window").width
+    },
+    statItem: {
+        margin: 10,
+        padding: 15,
+        minHeight: 70,
+        backgroundColor: "#fff",
+        flexDirection: "row",
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        borderRadius: 6
+    },
+    iconContainer: {
+        width: 55,
+        height: 55,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 10,
+        borderColor: "#000",
+        borderWidth: 2,
+        borderRadius:  30
     }
 });
 

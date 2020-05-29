@@ -21,15 +21,15 @@ class UsersList extends React.Component {
         if(this.props.users.length > 0){
 
             twitter.api("GET", "users/lookup.json", { screen_name: this.props.users.join()})
-            .then(response => response)
-            .then(data => {
-                this.setState(
-                    {
-                        users: data
-                    }
-                );
-            })
-            .catch(error => console.warn("error", error));
+                .then(response => response)
+                .then(data => {
+                    this.setState(
+                        {
+                            users: data
+                        }
+                    );
+                })
+                .catch(error => console.warn("error", error));
         }
     }
 
