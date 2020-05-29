@@ -7,44 +7,48 @@ import Stats from "./Components/Stats/Stats";
 import Bot from "./Components/Bot/Bot";
 import Settings from "./Components/Settings/Settings";
 import {Provider} from "react-redux";
-import Store from "./Store/configureStore";
+import configureStore from "./Store/configureStore";
+const {store, persistor} = configureStore();
+import { PersistGate } from "redux-persist/integration/react";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
     return (
-        <Provider store={Store}>
-            <NavigationContainer>
-                <Tab.Navigator
-                    screenOptions={({ route }) => ({
-                        tabBarIcon: ({ focused, color, size }) => {
-                            let iconName;
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <NavigationContainer>
+                    <Tab.Navigator
+                        screenOptions={({ route }) => ({
+                            tabBarIcon: ({ focused, color, size }) => {
+                                let iconName;
 
-                            if (route.name === "Stats") {
-                                iconName = "ios-analytics";
-                            } else if (route.name === "Paramètres") {
-                                iconName = "ios-settings";
-                            } else if (route.name === "Bot") {
-                                iconName = "ios-rocket";
+                                if (route.name === "Stats") {
+                                    iconName = "ios-analytics";
+                                } else if (route.name === "Paramètres") {
+                                    iconName = "ios-settings";
+                                } else if (route.name === "Bot") {
+                                    iconName = "ios-rocket";
+                                }
+
+                                // You can return any component that you like here!
+                                return <Ionicons name={iconName} size={size} color={color} />;
                             }
-
-                            // You can return any component that you like here!
-                            return <Ionicons name={iconName} size={size} color={color} />;
-                        }
-                    })}
-                    tabBarOptions={{
-                        activeTintColor: "tomato",
-                        inactiveTintColor: "#fff",
-                        style: {
-                            backgroundColor: "#3A3E42",//color you want to change
-                        }
-                    }}
-                >
-                    <Tab.Screen name="Stats" component={Stats} />
-                    <Tab.Screen name="Bot" component={Bot} />
-                    <Tab.Screen name="Paramètres" component={Settings} />
-                </Tab.Navigator>
-            </NavigationContainer>
+                        })}
+                        tabBarOptions={{
+                            activeTintColor: "tomato",
+                            inactiveTintColor: "#fff",
+                            style: {
+                                backgroundColor: "#3A3E42",//color you want to change
+                            }
+                        }}
+                    >
+                        <Tab.Screen name="Stats" component={Stats} />
+                        <Tab.Screen name="Bot" component={Bot} />
+                        <Tab.Screen name="Paramètres" component={Settings} />
+                    </Tab.Navigator>
+                </NavigationContainer>
+            </PersistGate>
         </Provider>
     );
 }

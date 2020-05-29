@@ -109,7 +109,7 @@ class UserSingle extends React.Component {
                                 size={15} 
                                 type="font-awesome"
                                 name="hourglass"
-                                color="#000"
+                                color="tomato"
                             />
                         </View>
                         <View style={{marginLeft: 17}}>
@@ -123,7 +123,7 @@ class UserSingle extends React.Component {
                                 size={15} 
                                 type="font-awesome"
                                 name="twitter"
-                                color="#000"
+                                color="tomato"
                             />
                         </View>
                         <View style={{marginLeft: 17}}>
@@ -137,7 +137,7 @@ class UserSingle extends React.Component {
                                 size={15} 
                                 type="font-awesome"
                                 name="users"
-                                color="#000"
+                                color="tomato"
                             />
                         </View>
                         <View style={{marginLeft: 17}}>
@@ -151,7 +151,7 @@ class UserSingle extends React.Component {
                                 size={15} 
                                 type="font-awesome-5"
                                 name="handshake"
-                                color="#000"
+                                color="tomato"
                             />
                         </View>
                         <View style={{marginLeft: 17}}>
