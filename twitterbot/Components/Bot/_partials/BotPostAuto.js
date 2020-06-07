@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, TextInput, Picker, TouchableOpacity, Switch } from "react-native";
+import { StyleSheet, View, TextInput, Picker, TouchableOpacity, Switch, Alert } from "react-native";
 import { Text, Button, Divider } from "react-native-elements";
 import { Ionicons } from "react-native-vector-icons";
 import twitter from "react-native-simple-twitter";
@@ -25,12 +25,22 @@ export default class BotPostAuto extends React.Component {
         // this.sendTweet();
         // let intervalId = setInterval(this.sendTweet, 30000);
         // this.setState({ intervalId: intervalId });
-        alert(`Voici les paramètres de votre bot : 
-        Nom : ${this.state.botName}
-        Contenu : ${this.state.tweet}
-        Heure : ${this.state.displayTime}
-        Intervalle : ${this.state.interval}
-        `);
+        Alert.alert(
+            "Confirmation de votre bot",
+            `Nom : ${this.state.botName}\nContenu : ${this.state.tweet}\nHeure : ${this.state.displayTime}\nIntervalle : ${this.state.interval}`,
+            [
+                {
+                    text: "Oui",
+                    onPress: () => {
+                        this.props.route.params.addBot(this.state);
+                        this.props.navigation.navigate("BotMenu");
+                    }
+                },
+                {
+                    text: "Annuler"
+                }
+            ]
+        );
     }
 
     sendTweet() {
@@ -88,12 +98,12 @@ export default class BotPostAuto extends React.Component {
                         onValueChange={this.handlePickerChange}
                         prompt='Intervalle entre chaque tweet de votre bot'
                     >
-                        <Picker.Item label="1 minute" value="1m" />
-                        <Picker.Item label="5 minutes" value="5m" />
-                        <Picker.Item label="15 minutes" value="15m" />
-                        <Picker.Item label="30 minutes" value="30m" />
-                        <Picker.Item label="1 heure" value="1h" />
-                        <Picker.Item label="24 heures" value="24h" />
+                        <Picker.Item label="1 minute" value="60000" />
+                        <Picker.Item label="5 minutes" value="300000" />
+                        <Picker.Item label="15 minutes" value="900000" />
+                        <Picker.Item label="30 minutes" value="1800000" />
+                        <Picker.Item label="1 heure" value="3600000" />
+                        <Picker.Item label="24 heures" value="86400000" />
                     </Picker>
 
                 </TouchableOpacity>

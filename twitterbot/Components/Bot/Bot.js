@@ -2,6 +2,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import BotMenu from './_partials/BotMenu';
 import BotPostAuto from './_partials/BotPostAuto';
+import GoBotPostAuto from './_partials/GoBotPostAuto';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ export default class Settings extends React.Component {
             }>
                 <Stack.Screen name="BotMenu" component={BotMenu} options={{ title: "Bots" }} />
                 <Stack.Screen name="BotPostAuto" component={BotPostAuto} options={{ title: "Bot post automatique" }} />
+                <Stack.Screen name="GoBotPostAuto" component={GoBotPostAuto} options={{ title: "Bot" }} />
             </Stack.Navigator>
         );
     }
