@@ -7,9 +7,15 @@ import twitter from "react-native-simple-twitter";
 export default class GoBotPostAuto extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
         this.state = {
-            modalVisible: false
+            modalVisible: false,
+            type: this.props.route.params.bot.type,
+            botName: this.props.route.params.bot.botName,
+            tweet: this.props.route.params.bot.tweet,
+            displayTime: this.props.route.params.bot.displayTime,
+            interval: parseInt(this.props.route.params.bot.interval),
+            intervalId: ""
         };
     }
 
@@ -22,9 +28,15 @@ export default class GoBotPostAuto extends React.Component {
     }
 
     startBot() {
-        // this.sendTweet();
-        // let intervalId = setInterval(this.sendTweet, 30000);
-        // this.setState({ intervalId: intervalId });
+        this.setModalVisible(true);
+        this.sendTweet();
+        let intervalId = setInterval(() => this.sendTweet(), this.state.interval);
+        this.setState({ intervalId: intervalId });
+    }
+
+    stopBot(modalVisible) {
+        clearInterval(this.state.intervalId);
+        this.setModalVisible(!modalVisible);
     }
 
     sendTweet() {
@@ -34,9 +46,9 @@ export default class GoBotPostAuto extends React.Component {
         let tweet = "";
         if (this.state.displayTime) {
             let date = new Date();
-            let hours = date.getHours();
-            let minutes = date.getMinutes();
-            let seconds = date.getSeconds();
+            let hours = this.get2D(date.getHours());
+            let minutes = this.get2D(date.getMinutes());
+            let seconds = this.get2D(date.getSeconds());
             tweet += "[" + hours + ":" + minutes + ":" + seconds + "] ";
         }
 
@@ -44,6 +56,12 @@ export default class GoBotPostAuto extends React.Component {
         tweet += this.state.tweet;
 
         twitter.api("POST", "statuses/update.json", { status: tweet })
+    }
+
+    get2D(num) {
+        if (num.toString().length < 2) // Integer of less than two digits
+            return "0" + num; // Prepend a zero!
+        return num.toString(); // return string for consistency
     }
 
     render() {
@@ -70,7 +88,7 @@ export default class GoBotPostAuto extends React.Component {
                             <TouchableHighlight
                                 style={{ ...styles.stopButton }}
                                 onPress={() => {
-                                    this.setModalVisible(!modalVisible);
+                                    this.stopBot(modalVisible)
                                 }}
                             >
                                 <Text style={styles.textStyle}>STOP</Text>
@@ -80,17 +98,17 @@ export default class GoBotPostAuto extends React.Component {
                 </Modal>
 
 
-                <Text h2>{this.props.route.params.bot.botName}</Text>
+                <Text h2>{this.state.botName}</Text>
 
                 <View style={styles.paramsContainer}>
                     <Ionicons
                         name={"ios-hourglass"}
                         size={35}
                         color={"tomato"} />
-                    <Text h4>  {this.props.route.params.bot.interval}</Text>
+                    <Text h4>  {this.state.interval}</Text>
                 </View>
 
-                {this.props.route.params.bot.displayTime &&
+                {this.state.displayTime &&
                     <View style={styles.paramsContainer}>
                         <Ionicons
                             name={"ios-clock"}
@@ -105,12 +123,14 @@ export default class GoBotPostAuto extends React.Component {
                         name={"ios-text"}
                         size={35}
                         color={"tomato"} />
-                    <Text h4>{this.props.route.params.bot.tweet}</Text>
+                    <Text h4>{this.state.tweet}</Text>
                 </View>
 
                 <Button
                     buttonStyle={styles.buttons}
-                    onPress={() => this.setModalVisible(true)}
+                    onPress={() => {
+                        this.startBot()
+                    }}
                     icon={
                         <Ionicons
                             name={"ios-rocket"}

@@ -38,7 +38,7 @@ export default class BotMenu extends React.Component {
                     />
                     <Button
                         buttonStyle={styles.buttons}
-                        onPress={() => alert("il y a rien ici pour le moment")}
+                        onPress={() => this.props.navigation.navigate("BotReponseAuto")}
                         icon={
                             <Ionicons
                                 name={"ios-at"}
