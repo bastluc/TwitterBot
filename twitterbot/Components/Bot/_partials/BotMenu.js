@@ -38,7 +38,9 @@ export default class BotMenu extends React.Component {
                     />
                     <Button
                         buttonStyle={styles.buttons}
-                        onPress={() => this.props.navigation.navigate("BotReponseAuto")}
+                        onPress={() => this.props.navigation.navigate("BotReponseAuto", {
+                            addBot: bot => this.addBot(bot)
+                        })}
                         icon={
                             <Ionicons
                                 name={"ios-at"}
@@ -65,7 +67,11 @@ export default class BotMenu extends React.Component {
                                     subtitleStyle={{ color: "tomato" }}
                                     chevron={{ color: "tomato" }}
                                     onPress={() => {
-                                        this.props.navigation.navigate("GoBotPostAuto", {bot: bot})
+                                        if (bot.type == "post") {
+                                            this.props.navigation.navigate("GoBotPostAuto", { bot: bot })
+                                        } else {
+                                            this.props.navigation.navigate("GoBotReponseAuto", { bot: bot })
+                                        }
                                     }}
                                 />
                             ))
