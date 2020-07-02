@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import {StyleSheet,View, Text } from "react-native";
 import { ListItem } from "react-native-elements";
 import { Ionicons } from "react-native-vector-icons";
 
@@ -22,22 +22,17 @@ export default class SettingsIndex extends React.Component {
 
     render() {
         return (
-            <View>
-                {
-                    this.settingsItems.map((item, i) => (
-                        <ListItem
-                            key={i}
-                            title={item.name}
-                            leftIcon={<Ionicons
-                                name={item.icon}
-                                size={25}
-                                color={"tomato"} />}
-                            bottomDivider
-                            chevron
-                        />
-                    ))
-                }
+            <View style={styles.container}>
+                <Text>Aucun paramètres requis pour le moment.</Text>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    }
+});
